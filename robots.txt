@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luanovasa.com.br/sitemap.xml
