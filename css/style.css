@@ -407,8 +407,35 @@ address { font-style: normal; margin: 1.2rem 0 2rem; color: var(--muted); }
 /* Hero (desktop): com três botões, o grupo extra passa para a segunda linha e não encosta na modelo */
 @media (min-width: 820px) { .hero__cta { max-width: min(38rem, 48vw); } }
 
-/* Família e Condicional (celular): modelo atrás do conteúdo, nas laterais */
+/* Família e Condicional (celular): composição editorial, com áreas próprias para imagem e texto */
 @media (max-width: 819px) {
-  .familia::after { top: 0; bottom: 0; left: -6vw; width: 76vw; opacity: .55; background-position: left top 12px; background-size: auto 112%; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%); mask-image: linear-gradient(180deg, #000 60%, transparent 100%); }
-  .condicional::after { top: 0; bottom: 0; right: -10vw; width: 88vw; opacity: .5; background-position: right top 4%; background-size: auto 108%; -webkit-mask-image: linear-gradient(90deg, transparent 4%, #000 40%); mask-image: linear-gradient(90deg, transparent 4%, #000 40%); }
+  .familia { padding-bottom: 5rem; }
+  .familia h2 { margin-left: auto; text-align: right; }
+  .familia__lista { text-align: right; }
+  .familia__lista li { padding: 1.1rem 0 1.2rem .6rem; }
+  .familia__lista strong { font-size: clamp(1.6rem, 6.4vw, 2.2rem); overflow-wrap: anywhere; }
+  .familia::after { left: var(--pad); }
+
+  /* Condicional: mulher inteira à direita, com a cabeça logo abaixo do título; a borda esquerda dela se dissolve sob o parágrafo */
+  .condicional { --wom-w: min(54vw, 340px); --wom-top: calc(var(--sec) + 4.5rem); min-height: calc(var(--wom-top) + var(--wom-w) * 1.5 + 2rem); }
+  .condicional p { max-width: min(38ch, 60%); }
+  .condicional::after { top: var(--wom-top); bottom: 2rem; right: 0; width: var(--wom-w); background-size: contain; background-position: right top; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30%); mask-image: linear-gradient(90deg, transparent 0, #000 30%); }
+}
+/* Família, celulares: título ao lado do homem (da cabeça à cintura); categorias em duas colunas logo abaixo */
+@media (max-width: 599px) {
+  .familia { --man-w: min(46vw, 220px); }
+  .familia h2 { width: calc(100% - var(--man-w) - 1rem); min-height: calc(var(--man-w) * 1.3); }
+  .familia__lista { margin-top: 2rem; }
+  .familia::after { top: var(--sec); width: var(--man-w); height: calc(var(--man-w) * 1.3); background-size: 100% auto; background-position: left top; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, #000 70%, transparent 100%); }
+}
+/* Família, telas médias: homem à esquerda (apoiado na base) e categorias à direita */
+@media (min-width: 600px) and (max-width: 819px) {
+  .familia { --man-w: min(34vw, 240px); }
+  .familia__lista { width: calc(100% - var(--man-w) - 1rem); margin-left: auto; }
+  .familia::after { top: calc(var(--sec) + 5.5rem); bottom: 0; width: var(--man-w); background-size: contain; background-position: left bottom; }
+}
+/* Família, celulares muito estreitos: homem um pouco menor e título mais compacto para manter linhas naturais */
+@media (max-width: 359px) {
+  .familia { --man-w: 40vw; }
+  .familia h2 { font-size: 1.75rem; }
 }
