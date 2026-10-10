@@ -407,229 +407,35 @@ address { font-style: normal; margin: 1.2rem 0 2rem; color: var(--muted); }
 /* Hero (desktop): com três botões, o grupo extra passa para a segunda linha e não encosta na modelo */
 @media (min-width: 820px) { .hero__cta { max-width: min(38rem, 48vw); } }
 
-/* =========================================================
-   REDESIGN MOBILE — FAMÍLIA E CONDICIONAL
-   Desktop preservado. No mobile, as imagens têm áreas próprias
-   para evitar sobreposição, cortes e modelos desproporcionais.
-   ========================================================= */
-.familia__foto-mobile,
-.condicional__foto-mobile { display: none; }
-
+/* Família e Condicional (celular): composição editorial, com áreas próprias para imagem e texto */
 @media (max-width: 819px) {
-  /* FAMÍLIA: título e modelo em uma faixa; categorias em cartões abaixo */
-  .familia {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    padding: clamp(2.4rem, 7vw, 3.2rem) 0 3rem;
-    background: radial-gradient(70% 45% at 20% 20%, rgba(138,100,32,.12), transparent 75%), var(--cream);
-    color: var(--ink);
-  }
+  .familia { padding-bottom: 5rem; }
+  .familia h2 { margin-left: auto; text-align: right; }
+  .familia__lista { text-align: right; }
+  .familia__lista li { padding: 1.1rem 0 1.2rem .6rem; }
+  .familia__lista strong { font-size: clamp(1.6rem, 6.4vw, 2.2rem); overflow-wrap: anywhere; }
+  .familia::after { left: var(--pad); }
 
-  /* Desativa a fotografia de fundo antiga apenas no mobile. */
-  .familia::after { content: none; }
-  .familia .container { position: relative; z-index: 1; }
-  .familia__intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(125px, 42%);
-    align-items: end;
-    gap: .25rem;
-    min-height: 225px;
-    margin-bottom: 1.1rem;
-  }
-  .familia__intro h2 {
-    align-self: center;
-    width: auto;
-    min-height: 0;
-    max-width: 13ch;
-    margin: 0;
-    text-align: left;
-    font-size: clamp(1.8rem, 6.4vw, 2.35rem);
-    line-height: 1.04;
-    overflow-wrap: normal;
-  }
-  .familia__foto-mobile {
-    display: block;
-    width: 100%;
-    max-width: 190px;
-    max-height: 270px;
-    height: auto;
-    justify-self: end;
-    align-self: end;
-    object-fit: contain;
-    object-position: center bottom;
-    filter: drop-shadow(0 8px 12px rgba(55,39,17,.08));
-  }
-  .familia__lista {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
-    margin: .25rem 0 0;
-    border-top: 1px solid rgba(138,100,32,.55);
-    text-align: left;
-  }
-  .familia__lista li,
-  .familia__lista li:nth-child(even),
-  .familia__lista li:nth-child(odd) {
-    min-width: 0;
-    padding: 1rem .7rem 1.1rem 0;
-    border-bottom: 1px solid rgba(138,100,32,.28);
-    overflow-wrap: break-word;
-  }
-  .familia__lista li:nth-child(even) { padding-left: .8rem; padding-right: 0; border-left: 1px solid rgba(138,100,32,.18); }
-  .familia__lista strong {
-    display: block;
-    font-size: clamp(1.45rem, 5.2vw, 1.85rem);
-    line-height: 1.05;
-    overflow-wrap: normal;
-  }
-  .familia__lista span {
-    display: block;
-    margin-top: .4rem;
-    font-size: clamp(.9rem, 3.7vw, 1rem);
-    line-height: 1.45;
-  }
-
-  /* CONDICIONAL: texto e CTA primeiro; modelo grande em área própria abaixo */
-  .condicional {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    min-height: 0;
-    padding: clamp(2.6rem, 8vw, 3.5rem) 0 0;
-    background: radial-gradient(70% 45% at 75% 70%, rgba(217,169,74,.10), transparent 72%), var(--black);
-  }
-  .condicional::after { content: none; }
-  .condicional__in {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    z-index: 1;
-  }
-  .condicional h2 {
-    max-width: 13ch;
-    color: var(--cream);
-    font-size: clamp(2rem, 7.2vw, 2.6rem);
-    line-height: 1.02;
-  }
-  .condicional p {
-    max-width: 36ch;
-    margin-top: 1rem;
-    color: var(--muted);
-    font-size: clamp(1rem, 4vw, 1.08rem);
-    line-height: 1.6;
-  }
-  .condicional .btn {
-    margin-top: 1.35rem;
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    white-space: normal;
-    text-align: center;
-    padding-inline: clamp(1rem, 5vw, 1.6rem);
-  }
-  .condicional__foto-mobile {
-    display: block;
-    width: min(100%, 410px);
-    height: auto;
-    max-height: 310px;
-    object-fit: contain;
-    object-position: right bottom;
-    align-self: flex-end;
-    margin-top: .1rem;
-    margin-right: calc(-1 * var(--pad));
-    margin-bottom: -1px;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, rgba(0,0,0,.88) 100%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 82%, rgba(0,0,0,.88) 100%);
-  }
+  /* Condicional: mulher inteira à direita, com a cabeça logo abaixo do título; a borda esquerda dela se dissolve sob o parágrafo */
+  .condicional { --wom-w: min(54vw, 340px); --wom-top: calc(var(--sec) + 4.5rem); min-height: calc(var(--wom-top) + var(--wom-w) * 1.5 + 2rem); }
+  .condicional p { max-width: min(38ch, 60%); }
+  .condicional::after { top: var(--wom-top); bottom: 2rem; right: 0; width: var(--wom-w); background-size: contain; background-position: right top; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30%); mask-image: linear-gradient(90deg, transparent 0, #000 30%); }
 }
-
-@media (max-width: 380px) {
-  .familia__intro {
-    grid-template-columns: minmax(0, 1fr) minmax(112px, 40%);
-    min-height: 205px;
-  }
-  .familia__intro h2 { font-size: clamp(1.65rem, 6.3vw, 1.9rem); }
-  .familia__foto-mobile { max-height: 235px; }
-  .familia__lista li,
-  .familia__lista li:nth-child(even),
-  .familia__lista li:nth-child(odd) { padding-top: .85rem; padding-bottom: .95rem; }
-  .familia__lista strong { font-size: 1.35rem; }
-  .familia__lista span { font-size: .88rem; }
-  .condicional__foto-mobile { max-height: 270px; }
+/* Família, celulares: título ao lado do homem (da cabeça à cintura); categorias em duas colunas logo abaixo */
+@media (max-width: 599px) {
+  .familia { --man-w: min(46vw, 220px); }
+  .familia h2 { width: calc(100% - var(--man-w) - 1rem); min-height: calc(var(--man-w) * 1.3); }
+  .familia__lista { margin-top: 2rem; }
+  .familia::after { top: var(--sec); width: var(--man-w); height: calc(var(--man-w) * 1.3); background-size: 100% auto; background-position: left top; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, #000 70%, transparent 100%); }
 }
-
-
-/* =========================================================
-   MOBILE: OCULTAR FOTOGRAFIAS NAS SEÇÕES FAMÍLIA E CONDICIONAL
-   As fotos continuam visíveis no desktop a partir de 820px.
-   ========================================================= */
-@media (max-width: 819px) {
-  .familia__foto-mobile,
-  .condicional__foto-mobile {
-    display: none !important;
-  }
-
-  .familia__intro {
-    display: block;
-    min-height: 0;
-    margin-bottom: 1.5rem;
-  }
-
-  .familia__intro h2 {
-    width: 100%;
-    max-width: 17ch;
-    min-height: 0;
-    margin: 0;
-    text-align: left;
-  }
-
-  .condicional {
-    min-height: 0;
-    padding-top: clamp(2.6rem, 8vw, 3.5rem);
-    padding-bottom: clamp(2.8rem, 9vw, 4rem);
-  }
-
-  .condicional__in {
-    padding-bottom: 0;
-  }
-
-  .condicional p {
-    max-width: 38ch;
-  }
+/* Família, telas médias: homem à esquerda (apoiado na base) e categorias à direita */
+@media (min-width: 600px) and (max-width: 819px) {
+  .familia { --man-w: min(34vw, 240px); }
+  .familia__lista { width: calc(100% - var(--man-w) - 1rem); margin-left: auto; }
+  .familia::after { top: calc(var(--sec) + 5.5rem); bottom: 0; width: var(--man-w); background-size: contain; background-position: left bottom; }
 }
-
-@media (min-width: 820px) {
-  .familia__foto-mobile,
-  .condicional__foto-mobile {
-    display: none !important;
-  }
-}
-
-
-/* TABLET: manter o modelo da seção Família atrás do conteúdo, sem corte lateral */
-@media (min-width: 820px) and (max-width: 1100px) {
-  .familia {
-    min-height: 620px;
-  }
-
-  .familia .container {
-    z-index: 1;
-  }
-
-  .familia h2,
-  .familia__lista {
-    position: relative;
-    z-index: 1;
-    max-width: 56%;
-  }
-
-  .familia::after {
-    left: 0;
-    width: 64%;
-    background-position: left center;
-    background-size: auto 100%;
-    opacity: .92;
-  }
+/* Família, celulares muito estreitos: homem um pouco menor e título mais compacto para manter linhas naturais */
+@media (max-width: 359px) {
+  .familia { --man-w: 40vw; }
+  .familia h2 { font-size: 1.75rem; }
 }
